@@ -1,5 +1,5 @@
-const startButton = document.getElementById("startBtn");
+const button = document.getElementById("startBtn");
 
-startButton.addEventListener("click", function () {
-    alert("🌸 Welcome to My Wonyoung Era!\n\nLet's build healthy habits together!");
+button.addEventListener("click", function () {
+    alert("🌸 Welcome to your Wonyoung Era! Let’s build your dream routine today.");
 });
