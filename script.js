@@ -128,3 +128,20 @@ completeBtn.addEventListener("click", () => {
 
 // initial load
 updateStreakDisplay();
+// 🌙 Dark Mode
+const darkBtn = document.getElementById("darkModeToggle");
+
+darkBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+    } else {
+        localStorage.setItem("theme", "light");
+    }
+});
+
+// load saved theme
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+}
