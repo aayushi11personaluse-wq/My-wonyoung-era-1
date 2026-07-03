@@ -1,134 +1,7 @@
-// 🌸 Habit Tracker
-const habits = document.querySelectorAll(".habit");
-
-habits.forEach((habit, index) => {
-    const saved = localStorage.getItem("habit-" + index);
-
-    if (saved === "true") {
-        habit.checked = true;
-    }
-
-    habit.addEventListener("change", () => {
-        localStorage.setItem("habit-" + index, habit.checked);
-    });
-});
-
-
-// 💧 Water Tracker
-let waterCount = localStorage.getItem("water") || 0;
-
-const waterText = document.getElementById("waterCount");
-const addBtn = document.getElementById("addWater");
-const resetBtn = document.getElementById("resetWater");
-
-function updateWater() {
-    waterText.textContent = `${waterCount} / 8 cups`;
-    localStorage.setItem("water", waterCount);
-}
-
-addBtn.addEventListener("click", () => {
-    if (waterCount < 8) {
-        waterCount++;
-        updateWater();
-    }
-});
-
-resetBtn.addEventListener("click", () => {
-    waterCount = 0;
-    updateWater();
-});
-
-// initial load
-updateWater();
-// ⏱️ Pomodoro Timer
-
-let timeLeft = 25 * 60; // 25 minutes in seconds
-let timer = null;
-
-const timeDisplay = document.getElementById("time");
-const startBtn = document.getElementById("startTimer");
-const pauseBtn = document.getElementById("pauseTimer");
-const resetBtn = document.getElementById("resetTimer");
-
-function updateTimerDisplay() {
-    let minutes = Math.floor(timeLeft / 60);
-    let seconds = timeLeft % 60;
-
-    timeDisplay.textContent =
-        `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-}
-
-startBtn.addEventListener("click", () => {
-    if (!timer) {
-        timer = setInterval(() => {
-            if (timeLeft > 0) {
-                timeLeft--;
-                updateTimerDisplay();
-            } else {
-                clearInterval(timer);
-                timer = null;
-                alert("⏰ Time’s up! Take a break 🌸");
-            }
-        }, 1000);
-    }
-});
-
-pauseBtn.addEventListener("click", () => {
-    clearInterval(timer);
-    timer = null;
-});
-
-resetBtn.addEventListener("click", () => {
-    clearInterval(timer);
-    timer = null;
-    timeLeft = 25 * 60;
-    updateTimerDisplay();
-});
-
-// initial display
-updateTimerDisplay();
-// 📊 Streak System
-
-let streak = parseInt(localStorage.getItem("streak")) || 0;
-let lastDate = localStorage.getItem("lastDate");
-
-const streakText = document.getElementById("streakText");
-const completeBtn = document.getElementById("completeDay");
-
-function updateStreakDisplay() {
-    streakText.textContent = `🔥 ${streak} day streak`;
-}
-
-function getToday() {
-    return new Date().toDateString();
-}
-
-// check if already marked today
-if (lastDate === getToday()) {
-    completeBtn.disabled = true;
-    completeBtn.textContent = "Already completed today ✔";
-}
-
-completeBtn.addEventListener("click", () => {
-    let today = getToday();
-
-    if (lastDate !== today) {
-        streak++;
-        localStorage.setItem("streak", streak);
-
-        lastDate = today;
-        localStorage.setItem("lastDate", lastDate);
-
-        updateStreakDisplay();
-
-        completeBtn.disabled = true;
-        completeBtn.textContent = "Already completed today ✔";
-    }
-});
-
-// initial load
-updateStreakDisplay();
-// 🌙 Dark Mode
+                
+// ======================
+// 🌙 DARK MODE
+// ======================
 const darkBtn = document.getElementById("darkModeToggle");
 
 darkBtn.addEventListener("click", () => {
@@ -141,29 +14,214 @@ darkBtn.addEventListener("click", () => {
     }
 });
 
-// load saved theme
+// load theme
 if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark");
 }
-// 📖 Journal
+
+
+// ======================
+// 🌸 HABITS
+// ======================
+const habits = document.querySelectorAll(".habit");
+
+habits.forEach((habit, index) => {
+    const saved = localStorage.getItem("habit-" + index);
+    if (saved === "true") habit.checked = true;
+
+    habit.addEventListener("change", () => {
+        localStorage.setItem("habit-" + index, habit.checked);
+        updateProgress();
+    });
+});
+
+
+// ======================
+// 💧 WATER TRACKER
+// ======================
+let water = parseInt(localStorage.getItem("water")) || 0;
+
+const waterText = document.getElementById("waterCount");
+const addWater = document.getElementById("addWater");
+const resetWater = document.getElementById("resetWater");
+
+function updateWater() {
+    waterText.textContent = `${water} / 8 cups`;
+    localStorage.setItem("water", water);
+}
+
+addWater.addEventListener("click", () => {
+    if (water < 8) {
+        water++;
+        updateWater();
+    }
+});
+
+resetWater.addEventListener("click", () => {
+    water = 0;
+    updateWater();
+});
+
+updateWater();
+
+
+// ======================
+// ⏱️ TIMER (POMODORO)
+// ======================
+let timeLeft = 25 * 60;
+let timer = null;
+
+const timeDisplay = document.getElementById("time");
+const startTimer = document.getElementById("startTimer");
+const pauseTimer = document.getElementById("pauseTimer");
+const resetTimer = document.getElementById("resetTimer");
+
+function updateTimer() {
+    let min = Math.floor(timeLeft / 60);
+    let sec = timeLeft % 60;
+
+    timeDisplay.textContent =
+        `${min}:${sec < 10 ? "0" : ""}${sec}`;
+}
+
+startTimer.addEventListener("click", () => {
+    if (!timer) {
+        timer = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                updateTimer();
+            } else {
+                clearInterval(timer);
+                timer = null;
+                alert("⏰ Break time! You did great 🌸");
+            }
+        }, 1000);
+    }
+});
+
+pauseTimer.addEventListener("click", () => {
+    clearInterval(timer);
+    timer = null;
+});
+
+resetTimer.addEventListener("click", () => {
+    clearInterval(timer);
+    timer = null;
+    timeLeft = 25 * 60;
+    updateTimer();
+});
+
+updateTimer();
+
+
+// ======================
+// 📊 STREAK SYSTEM
+// ======================
+let streak = parseInt(localStorage.getItem("streak")) || 0;
+let lastDate = localStorage.getItem("lastDate");
+
+const streakText = document.getElementById("streakText");
+const completeDay = document.getElementById("completeDay");
+
+function today() {
+    return new Date().toDateString();
+}
+
+function updateStreakUI() {
+    streakText.textContent = `🔥 ${streak} day streak`;
+}
+
+if (lastDate === today()) {
+    completeDay.disabled = true;
+    completeDay.textContent = "Already done ✔";
+}
+
+completeDay.addEventListener("click", () => {
+    if (lastDate !== today()) {
+        streak++;
+        lastDate = today();
+
+        localStorage.setItem("streak", streak);
+        localStorage.setItem("lastDate", lastDate);
+
+        updateStreakUI();
+
+        completeDay.disabled = true;
+        completeDay.textContent = "Already done ✔";
+    }
+});
+
+updateStreakUI();
+
+
+// ======================
+// 🎯 GOALS SYSTEM
+// ======================
+const goalInput = document.getElementById("goalInput");
+const addGoal = document.getElementById("addGoal");
+const goalList = document.getElementById("goalList");
+
+let goals = JSON.parse(localStorage.getItem("goals")) || [];
+
+function renderGoals() {
+    goalList.innerHTML = "";
+
+    goals.forEach((goal, index) => {
+        const li = document.createElement("li");
+        li.textContent = goal;
+
+        li.addEventListener("click", () => {
+            goals.splice(index, 1);
+            saveGoals();
+        });
+
+        goalList.appendChild(li);
+    });
+}
+
+function saveGoals() {
+    localStorage.setItem("goals", JSON.stringify(goals));
+    renderGoals();
+}
+
+addGoal.addEventListener("click", () => {
+    if (goalInput.value.trim() !== "") {
+        goals.push(goalInput.value);
+        goalInput.value = "";
+        saveGoals();
+        updateProgress();
+    }
+});
+
+renderGoals();
+
+
+// ======================
+// 📖 JOURNAL (AUTO SAVE)
+// ======================
 const journal = document.getElementById("journal");
 
-// load saved text
 journal.value = localStorage.getItem("journal") || "";
 
-// auto-save
 journal.addEventListener("input", () => {
     localStorage.setItem("journal", journal.value);
 });
-// 🏆 Badges
-function checkBadges() {
-    let badgeMsg = "";
 
-    if (streak >= 3) badgeMsg += "🌸 Consistent Girl ";
-    if (streak >= 7) badgeMsg += "💖 Week Queen ";
-    if (waterCount >= 8) badgeMsg += "💧 Hydration Queen ";
 
-    console.log("Badges:", badgeMsg);
+// ======================
+// 📈 PROGRESS TRACKING
+// ======================
+const progressText = document.getElementById("progressText");
+
+function updateProgress() {
+    let done = 0;
+
+    document.querySelectorAll(".habit").forEach(h => {
+        if (h.checked) done++;
+    });
+
+    progressText.textContent = `Habits done today: ${done} / 4`;
 }
 
-setInterval(checkBadges, 3000);
+setInterval(updateProgress, 1000);
+updateProgress();
