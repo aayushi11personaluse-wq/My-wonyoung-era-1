@@ -155,3 +155,15 @@ journal.value = localStorage.getItem("journal") || "";
 journal.addEventListener("input", () => {
     localStorage.setItem("journal", journal.value);
 });
+// 🏆 Badges
+function checkBadges() {
+    let badgeMsg = "";
+
+    if (streak >= 3) badgeMsg += "🌸 Consistent Girl ";
+    if (streak >= 7) badgeMsg += "💖 Week Queen ";
+    if (waterCount >= 8) badgeMsg += "💧 Hydration Queen ";
+
+    console.log("Badges:", badgeMsg);
+}
+
+setInterval(checkBadges, 3000);
