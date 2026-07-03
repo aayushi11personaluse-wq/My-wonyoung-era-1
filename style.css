@@ -140,3 +140,25 @@ button:hover {
 .timer-buttons button:hover {
     background: #ff4f8b;
 }
+.streak {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#streakText {
+    font-size: 20px;
+    color: #ff4f8b;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.streak button {
+    background: #ff7ca8;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.streak button:hover {
+    background: #ff4f8b;
+}
