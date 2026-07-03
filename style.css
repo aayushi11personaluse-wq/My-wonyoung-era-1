@@ -162,3 +162,15 @@ button:hover {
 .streak button:hover {
     background: #ff4f8b;
 }
+.dark {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+.dark .card {
+    background: #222;
+    color: white;
+}
+
+.dark button {
+    filter: brightness(0.9);
+}
