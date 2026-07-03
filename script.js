@@ -145,3 +145,13 @@ darkBtn.addEventListener("click", () => {
 if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark");
 }
+// 📖 Journal
+const journal = document.getElementById("journal");
+
+// load saved text
+journal.value = localStorage.getItem("journal") || "";
+
+// auto-save
+journal.addEventListener("input", () => {
+    localStorage.setItem("journal", journal.value);
+});
