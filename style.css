@@ -112,3 +112,31 @@ button:hover {
 .water-buttons button:hover {
     background: #4fb2ff;
 }
+.timer {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#time {
+    font-size: 40px;
+    color: #ff4f8b;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.timer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.timer-buttons button {
+    background: #ff7ca8;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.timer-buttons button:hover {
+    background: #ff4f8b;
+}
