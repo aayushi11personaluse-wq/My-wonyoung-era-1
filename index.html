@@ -4,74 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Wonyoung Era</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<button id="darkModeToggle">🌙 Dark Mode</button>
+
+    <div class="top-bar">
+        <button id="darkModeToggle">🌙 Dark Mode</button>
+    </div>
+
     <div class="container">
 
         <h1>🌸 My Wonyoung Era</h1>
+        <p class="subtitle">your daily glow-up & focus companion</p>
 
-        <p class="subtitle">
-            build habits • glow up gently • stay consistent
-        </p>
-<div class="card">
+        <div class="card">
 
-    <h2>🌸 Today’s Habits</h2>
+            <!-- HABITS -->
+            <h2>🌸 Habits</h2>
+            <label><input type="checkbox" class="habit"> Drink water 💧</label>
+            <label><input type="checkbox" class="habit"> Study 📚</label>
+            <label><input type="checkbox" class="habit"> Skincare ✨</label>
+            <label><input type="checkbox" class="habit"> Exercise 🧘</label>
 
-    <div class="habits">
-        <label><input type="checkbox" class="habit"> Drink water 💧</label>
-        <label><input type="checkbox" class="habit"> Study 30 min 📚</label>
-        <label><input type="checkbox" class="habit"> Skincare ✨</label>
-        <label><input type="checkbox" class="habit"> Move your body 🧘</label>
+            <hr>
+
+            <!-- WATER -->
+            <h2>💧 Water Tracker</h2>
+            <p id="waterCount">0 / 8 cups</p>
+            <button id="addWater">+ Add Cup</button>
+            <button id="resetWater">Reset</button>
+
+            <hr>
+
+            <!-- TIMER -->
+            <h2>⏱️ Focus Timer</h2>
+            <p id="time">25:00</p>
+            <button id="startTimer">Start</button>
+            <button id="pauseTimer">Pause</button>
+            <button id="resetTimer">Reset</button>
+
+            <hr>
+
+            <!-- STREAK -->
+            <h2>📊 Streak</h2>
+            <p id="streakText">🔥 0 day streak</p>
+            <button id="completeDay">Mark Today Complete</button>
+
+            <hr>
+
+            <!-- GOALS -->
+            <h2>🎯 Goals</h2>
+            <input id="goalInput" placeholder="Add a goal...">
+            <button id="addGoal">Add</button>
+            <ul id="goalList"></ul>
+
+            <hr>
+
+            <!-- JOURNAL -->
+            <h2>📖 Journal</h2>
+            <textarea id="journal" placeholder="Write your thoughts..."></textarea>
+
+            <hr>
+
+            <!-- PROGRESS -->
+            <h2>📈 Progress</h2>
+            <p id="progressText"></p>
+
+        </div>
+
     </div>
 
-    <p class="small-text">Your progress saves automatically 🌷</p>
-
-</div>
-        
-    </div>
-<hr style="margin: 20px 0; border: 1px solid #f3f3f3;">
-
-<h2>💧 Water Tracker</h2>
-
-<div class="water">
-    <p id="waterCount">0 / 8 cups</p>
-
-    <div class="water-buttons">
-        <button id="addWater">+ Add Cup</button>
-        <button id="resetWater">Reset</button>
-    </div>
-</div>
-<hr style="margin: 20px 0; border: 1px solid #f3f3f3;">
-
-<h2>⏱️ Focus Timer</h2>
-
-<div class="timer">
-
-    <p id="time">25:00</p>
-
-    <div class="timer-buttons">
-        <button id="startTimer">Start</button>
-        <button id="pauseTimer">Pause</button>
-        <button id="resetTimer">Reset</button>
-    </div>
-
-</div>
-    <hr style="margin: 20px 0; border: 1px solid #f3f3f3;">
-
-<h2>📊 Daily Streak</h2>
-
-<div class="streak">
-
-    <p id="streakText">🔥 0 day streak</p>
-
-    <button id="completeDay">Mark Today Complete</button>
-
-</div>
-    <h2>📖 Journal</h2>
-<textarea id="journal" placeholder="Write your thoughts..."></textarea>
     <script src="script.js"></script>
 
 </body>
