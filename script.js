@@ -40,3 +40,50 @@ resetBtn.addEventListener("click", () => {
 
 // initial load
 updateWater();
+// ⏱️ Pomodoro Timer
+
+let timeLeft = 25 * 60; // 25 minutes in seconds
+let timer = null;
+
+const timeDisplay = document.getElementById("time");
+const startBtn = document.getElementById("startTimer");
+const pauseBtn = document.getElementById("pauseTimer");
+const resetBtn = document.getElementById("resetTimer");
+
+function updateTimerDisplay() {
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+
+    timeDisplay.textContent =
+        `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+}
+
+startBtn.addEventListener("click", () => {
+    if (!timer) {
+        timer = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                updateTimerDisplay();
+            } else {
+                clearInterval(timer);
+                timer = null;
+                alert("⏰ Time’s up! Take a break 🌸");
+            }
+        }, 1000);
+    }
+});
+
+pauseBtn.addEventListener("click", () => {
+    clearInterval(timer);
+    timer = null;
+});
+
+resetBtn.addEventListener("click", () => {
+    clearInterval(timer);
+    timer = null;
+    timeLeft = 25 * 60;
+    updateTimerDisplay();
+});
+
+// initial display
+updateTimerDisplay();
