@@ -62,3 +62,27 @@ button:hover {
     background: #ff4f8b;
     transform: scale(1.05);
 }
+.habits {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.habits label {
+    font-size: 16px;
+    color: #444;
+    cursor: pointer;
+}
+
+.habits input {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+.small-text {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #999;
+}
