@@ -87,3 +87,44 @@ resetBtn.addEventListener("click", () => {
 
 // initial display
 updateTimerDisplay();
+// 📊 Streak System
+
+let streak = parseInt(localStorage.getItem("streak")) || 0;
+let lastDate = localStorage.getItem("lastDate");
+
+const streakText = document.getElementById("streakText");
+const completeBtn = document.getElementById("completeDay");
+
+function updateStreakDisplay() {
+    streakText.textContent = `🔥 ${streak} day streak`;
+}
+
+function getToday() {
+    return new Date().toDateString();
+}
+
+// check if already marked today
+if (lastDate === getToday()) {
+    completeBtn.disabled = true;
+    completeBtn.textContent = "Already completed today ✔";
+}
+
+completeBtn.addEventListener("click", () => {
+    let today = getToday();
+
+    if (lastDate !== today) {
+        streak++;
+        localStorage.setItem("streak", streak);
+
+        lastDate = today;
+        localStorage.setItem("lastDate", lastDate);
+
+        updateStreakDisplay();
+
+        completeBtn.disabled = true;
+        completeBtn.textContent = "Already completed today ✔";
+    }
+});
+
+// initial load
+updateStreakDisplay();
